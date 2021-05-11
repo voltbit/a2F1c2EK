@@ -1,1 +1,6 @@
 task.md
+*.d
+*.rmeta
+**/debug/
+**/target/
+**/incremental/
