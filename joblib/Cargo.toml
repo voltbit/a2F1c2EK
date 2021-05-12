@@ -1,5 +1,5 @@
 [package]
-name = "data_clients"
+name = "joblib"
 version = "0.1.0"
 authors = ["Andrei Dobre <andreidobre.web@gmail.com>"]
 edition = "2018"
@@ -7,11 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = { version = "1", features = ["full"] }
-warp = "0.3"
-log = "0.4"
-pretty_env_logger = "0.3"
-serde = "1.0"
-serde_derive = "1.0"
-serde_json = "1.0"
-joblib = { path = "../joblib" }
+protobuf = "2.23.0"
+
+[build-dependencies]
+protoc-rust = "2.0"

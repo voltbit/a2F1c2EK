@@ -65,16 +65,16 @@ mod models {
     pub struct JobRequest {
         pub job_id: String,
         pub user_id: String,
-        pub urgency: JobUrgency,
-        pub protocol: String,
+        pub urgency: bool,
+        pub data_protocol: DataProtocol,
         pub query: String,
     }
 
     #[derive(Debug, Deserialize, Serialize, Clone)]
-    pub enum JobUrgency {
-        Critical,
-        High,
-        Medium,
-        Low,
+    pub enum DataProtocol {
+        JDBC,
+        ODBC,
+        S3,
+        LOOKER,
     }
 }
