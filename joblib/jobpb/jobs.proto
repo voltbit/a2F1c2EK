@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "jobpb";
+package joblib;
 
 /*
 The comments are added specifically to make it easier to follow along with the
@@ -14,7 +14,7 @@ Controller.
 // Defines a new ingestion job
 message DatasetIngestionJobRequest {
   string job_id = 1;
-  string userID = 2;
+  string user_id = 2;
   bool urgency = 3;
   DataProtocol protocol = 4;
   string query = 5;
@@ -28,10 +28,11 @@ message DatasetIngestionJobStatusRequest {
 }
 
 message DatasetIngestionJobStatusResponse {
-  string job_status = 1;
+  IngestionStatus job_status = 1;
 }
 
 // Source: dataset ingestor
+// Defines the result of an ingestion job
 message DatasetIngestionResultRequest {
   string result_id = 1;
   string job_id = 2;
@@ -40,6 +41,16 @@ message DatasetIngestionResultRequest {
 }
 
 message DatasetIngestionResultResponse {}
+
+// Source: dataset ingestor
+// Defines the request an igestor makes to get a suitable job
+message AvailableIngestionJobRequest {
+  DataProtocol protocol = 1;
+}
+
+message AvailableIngestionJobResponse {
+  string job_id = 1;
+}
 
 // Source: insight generator
 message JobDatasetRequest {
@@ -66,7 +77,8 @@ enum IngestionStatus {
 
 service JobManager {
   rpc CreateIngestionJob (DatasetIngestionJobRequest) returns (DatasetIngestionJobResponse);
-  rpc ReadIngestionJob (DatasetIngestionJobStatusRequest) returns (DatasetIngestionJobStatusResponse);
   rpc CreateIngestionResult (DatasetIngestionResultRequest) returns (DatasetIngestionResultResponse);
+  rpc ReadIngestionJobStatus (DatasetIngestionJobStatusRequest) returns (DatasetIngestionJobStatusResponse);
+  rpc ReadAvailableIngestionJob (AvailableIngestionJobRequest) returns (AvailableIngestionJobResponse);
   rpc ReadJobDataset (JobDatasetRequest) returns (JobDatasetResponse);
 }

@@ -4,3 +4,4 @@ task.md
 **/debug/
 **/target/
 **/incremental/
+**/Cargo.lock

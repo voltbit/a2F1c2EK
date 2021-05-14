@@ -1,10 +1,20 @@
-extern crate protoc_rust;
+// extern crate protoc_rust_grpc;
 
+// fn main() {
+//     // compile protocol buffer using protoc
+//     protoc_rust_grpc::Codegen::new()
+//         .out_dir("src")
+//         .input("jobpb/jobs.proto")
+//         .includes(&["jobpb"])
+//         .rust_protobuf(true)
+//         .run()
+//         .expect("error generating protobuf code");
+// }
+//
+//
 fn main() {
-    protoc_rust::Codegen::new()
-        .out_dir("src")
-        .inputs(&["jobpb/jobs.proto"])
-        .include("jobpb")
-        .run()
-        .expect("protoc");
+    tonic_build::configure()
+        .out_dir("src/")
+        .compile(&["jobpb/jobs.proto"], &["jobpb"])
+        .unwrap();
 }

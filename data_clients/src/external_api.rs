@@ -54,6 +54,9 @@ mod handlers {
         job_request: JobRequest,
     ) -> Result<impl warp::Reply, Infallible> {
         log::debug!("Got job request: {:?}", job_request);
+        crate::internal_api::make_dataset_ingestion_job_request()
+            .await
+            .unwrap();
         Ok(StatusCode::CREATED)
     }
 }

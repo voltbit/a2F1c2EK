@@ -7,15 +7,15 @@ mod internal_api;
 
 async fn start_client() {
     let external = task::spawn(external_api::external_server());
-    let internal = task::spawn(internal_api::internal_server());
-    let _ = external.await;
-    let _ = internal.await;
+    // let internal = task::spawn(internal_api::internal_server());
+    external.await.expect("Data client external server");
+    // internal.await.expect("Data client internal server");
 }
 
 fn main() {
     println!("Starting user client");
     if env::var_os("RUST_LOG").is_none() {
-        env::set_var("RUST_LOG", "debug");
+        env::set_var("RUST_LOG", "info");
     }
     pretty_env_logger::init_timed();
 
