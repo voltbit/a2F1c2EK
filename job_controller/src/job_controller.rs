@@ -1,3 +1,4 @@
+#![allow(unused)]
 use joblib::joblib::job_manager_server::{JobManager, JobManagerServer};
 use joblib::joblib::{
     AvailableIngestionJobRequest, AvailableIngestionJobResponse, DataProtocol,
@@ -59,7 +60,7 @@ impl JobManager for JobController {
         let mut r = joblib::joblib::AvailableIngestionJobResponse {
             job_id: format!("job42"),
         };
-        log::info!("Received read dataset request");
+        log::info!("Received read available job request");
         Ok(Response::new(r))
     }
 }

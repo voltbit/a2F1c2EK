@@ -4,6 +4,7 @@ use tokio::task;
 
 mod external_api;
 mod internal_api;
+mod models;
 
 async fn start_client() {
     let external = task::spawn(external_api::external_server());
@@ -13,12 +14,12 @@ async fn start_client() {
 }
 
 fn main() {
-    println!("Starting user client");
     if env::var_os("RUST_LOG").is_none() {
         env::set_var("RUST_LOG", "info");
     }
     pretty_env_logger::init_timed();
 
+    log::info!("Starting user client");
     let rt = tokio::runtime::Runtime::new().expect("Failed to create tokio runtime");
     rt.block_on(start_client());
 }
