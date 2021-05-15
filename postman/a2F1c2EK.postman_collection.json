@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "7098f217-6b1c-4573-ab46-b9bb6eae0edc",
+		"name": "Kausa Interview",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Job Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"job_id\": \"job1\",\n    \"user_id\": \"user1\",\n    \"urgency\": false,\n    \"data_protocol\": \"S3\",\n    \"query\": \"select * from litfaßsäule\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/job",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Job Result",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"result_id\": \"result1\",\n    \"job_id\": \"job1\",\n    \"status\": \"Success\",\n    \"dataset\": \"http://s3.amazonaws.com/dataset1/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/job/result",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"job",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Job Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}:{{port}}/job/job1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"job",
+						"job1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Available Job",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"protocol\": \"S3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/job/available",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"job",
+						"available"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Job Dataset",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}:{{port}}/job/dataset/job1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"job",
+						"dataset",
+						"job1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
